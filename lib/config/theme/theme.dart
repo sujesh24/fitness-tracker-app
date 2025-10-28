@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppTheme {
+  static const Color primaryColor = Color(0xFF1A237E);
   static ThemeData get darkTheme {
     return ThemeData(
       brightness: Brightness.dark,
@@ -10,11 +11,13 @@ class AppTheme {
         surface: Color(0xFF1A237E),
         onSurface: Colors.white,
       ),
+
       //app bar theme
       appBarTheme: const AppBarTheme(
         backgroundColor: Color(0xFF1A237E),
         elevation: 0,
       ),
+
       //scaffold background color
       scaffoldBackgroundColor: const Color(0xFF0D1344),
       //card theme

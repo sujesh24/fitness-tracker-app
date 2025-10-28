@@ -1,3 +1,4 @@
+import 'package:fitness_tracker/config/theme/theme.dart';
 import 'package:fitness_tracker/screens/work_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
@@ -13,6 +14,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     return IntroductionScreen(
+      globalBackgroundColor: AppTheme.primaryColor,
       pages: [
         PageViewModel(
           title: 'Track Your Workouts',
