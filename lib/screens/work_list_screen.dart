@@ -1,4 +1,5 @@
 import 'package:fitness_tracker/enums/workout_type.dart';
+import 'package:fitness_tracker/widgets/workout_form_dialog.dart';
 import 'package:flutter/material.dart';
 
 class WorkListScreen extends StatefulWidget {
@@ -52,10 +53,10 @@ class _WorkListScreenState extends State<WorkListScreen> {
   }
 
   void _showAddWorkoutDialog(BuildContext context) {
-    // showDialog(
-    //   context: context,
-    //   builder: (context) => const WorkoutFormDialog(),
-    // );
+    showDialog(
+      context: context,
+      builder: (context) => const WorkoutFormDialog(),
+    );
   }
 }
 

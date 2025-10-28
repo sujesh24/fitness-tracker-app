@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Fitness Tracker',
       theme: ThemeData.dark(),
+
       home: OnboardingScreen(),
     );
   }
