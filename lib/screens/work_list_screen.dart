@@ -1,5 +1,6 @@
 import 'package:fitness_tracker/enums/workout_type.dart';
 import 'package:fitness_tracker/widgets/workout_form_dialog.dart';
+import 'package:fitness_tracker/widgets/workout_calender_graph.dart';
 import 'package:flutter/material.dart';
 
 class WorkListScreen extends StatefulWidget {
@@ -23,8 +24,8 @@ class _WorkListScreenState extends State<WorkListScreen> {
               alignment: Alignment.bottomCenter,
               child: Padding(
                 padding: EdgeInsets.only(bottom: 56.0, left: 16.0, right: 16.0),
-                // child: WorkoutCalendarGraph(),
-                child: Text('Workout Calendar Graph Placeholder'),
+                child: WorkoutCalenderGraph(),
+                // child: Text('Workout Calendar Graph Placeholder'),
               ),
             ),
           ),
@@ -61,7 +62,6 @@ class _WorkListScreenState extends State<WorkListScreen> {
 }
 
 //workout list widget
-
 class _WorkoutList extends StatelessWidget {
   final WorkoutType type;
 
