@@ -1,7 +1,8 @@
-import 'package:fitness_tracker/config/theme/theme.dart';
+import 'package:fitness_tracker/core/constants.dart';
 import 'package:fitness_tracker/screens/work_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -14,7 +15,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     return IntroductionScreen(
-      globalBackgroundColor: AppTheme.primaryColor,
       pages: [
         PageViewModel(
           title: 'Track Your Workouts',
@@ -36,15 +36,25 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       showNextButton: true,
       next: const Text('Next'),
       done: const Text('Get Started'),
-      onDone: () => onDone(context),
+      onDone: () => onDone(),
     );
   }
 
   //on done
-  void onDone(BuildContext context) {
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (_) => WorkListScreen()),
-    );
+  void onDone() async {
+    await _onboardingInitialStatus();
+
+    if (mounted) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (_) => const WorkListScreen()),
+      );
+    }
+  }
+
+//shared prefrence set onboarding complete
+  Future<void> _onboardingInitialStatus() async {
+    final sharedPrefrence = await SharedPreferences.getInstance();
+    sharedPrefrence.setBool(hasOnboardingInitialized, true);
   }
 }

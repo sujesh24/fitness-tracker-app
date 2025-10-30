@@ -1,26 +1,25 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'workout_provider.dart';
+part of 'onboarding_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$workoutNotifierHash() => r'cf8ff1adcbdce4abfea9eb2da7c0b8cd09973993';
+String _$hasSeenOnboardingHash() => r'e245798bcf42f7105d6530e4861a85b4b1f6b025';
 
-/// See also [WorkoutNotifier].
-@ProviderFor(WorkoutNotifier)
-final workoutNotifierProvider =
-    AutoDisposeNotifierProvider<WorkoutNotifier, List<Workout>>.internal(
-  WorkoutNotifier.new,
-  name: r'workoutNotifierProvider',
+/// See also [hasSeenOnboarding].
+@ProviderFor(hasSeenOnboarding)
+final hasSeenOnboardingProvider = AutoDisposeProvider<bool>.internal(
+  hasSeenOnboarding,
+  name: r'hasSeenOnboardingProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$workoutNotifierHash,
+      : _$hasSeenOnboardingHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$WorkoutNotifier = AutoDisposeNotifier<List<Workout>>;
+typedef HasSeenOnboardingRef = AutoDisposeProviderRef<bool>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

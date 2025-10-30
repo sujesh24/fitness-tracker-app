@@ -9,7 +9,7 @@ import 'package:uuid/uuid.dart';
 
 part 'workout_provider.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 class WorkoutNotifier extends _$WorkoutNotifier {
   final _uuid = const Uuid();
   @override
@@ -18,6 +18,7 @@ class WorkoutNotifier extends _$WorkoutNotifier {
     return [];
   }
 
+//add workout
   void addWorkout(
       String name, double weight, int reps, int sets, WorkoutType type) {
     final workout = Workout(
@@ -32,17 +33,26 @@ class WorkoutNotifier extends _$WorkoutNotifier {
     state = [...state, workout];
   }
 
+//toggle workout status
   void toggleWorkoutStatus(String id) {
     state = [
       for (final workout in state)
         if (workout.id == id)
-          workout.copyWith(isCompleted: !workout.isCompleted)
+          workout.copyWith(
+              isCompleted: !workout.isCompleted,
+              completedAt: workout.isCompleted ? null : DateTime.now())
         else
           workout
     ];
   }
 
+//delete workout
   void deleteWorkout(String id) {
     state = state.where((workout) => workout.id != id).toList();
+  }
+
+  // remove all completed workouts
+  void clearCompletedWorkouts() {
+    state = state.where((workout) => !workout.isCompleted).toList();
   }
 }

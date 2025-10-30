@@ -82,14 +82,14 @@ class _WorkoutFormDialogState extends State<WorkoutFormDialog> {
 
             //dropdown for workout type
             DropdownButtonFormField<WorkoutType>(
-              items: [
+              items: const [
                 DropdownMenuItem(
                   value: WorkoutType.upperBody,
-                  child: const Text('Upper Body'),
+                  child: Text('Upper Body'),
                 ),
                 DropdownMenuItem(
                   value: WorkoutType.lowerBody,
-                  child: const Text('Lower Body'),
+                  child: Text('Lower Body'),
                 ),
               ],
               initialValue: selectedType,

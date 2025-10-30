@@ -1,7 +1,9 @@
 import 'package:fitness_tracker/enums/workout_type.dart';
+import 'package:fitness_tracker/providers/workout/workout_provider.dart';
 import 'package:fitness_tracker/widgets/workout_form_dialog.dart';
 import 'package:fitness_tracker/widgets/workout_calender_graph.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class WorkListScreen extends StatefulWidget {
   const WorkListScreen({super.key});
@@ -13,43 +15,50 @@ class WorkListScreen extends StatefulWidget {
 class _WorkListScreenState extends State<WorkListScreen> {
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        appBar: AppBar(
-          title: const SizedBox.shrink(),
-          toolbarHeight: 170,
-          flexibleSpace: const SafeArea(
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: Padding(
-                padding: EdgeInsets.only(bottom: 56.0, left: 16.0, right: 16.0),
-                child: WorkoutCalenderGraph(),
-                // child: Text('Workout Calendar Graph Placeholder'),
+    return Consumer(
+      builder: (_, WidgetRef ref, __) {
+        //todo
+        final workouts = ref.watch(workoutNotifierProvider);
+        return DefaultTabController(
+          length: 2,
+          child: Scaffold(
+            appBar: AppBar(
+              title: const SizedBox.shrink(),
+              toolbarHeight: 170,
+              flexibleSpace: const SafeArea(
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Padding(
+                    padding:
+                        EdgeInsets.only(bottom: 56.0, left: 16.0, right: 16.0),
+                    child: WorkoutCalenderGraph(),
+                    // child: Text('Workout Calendar Graph Placeholder'),
+                  ),
+                ),
+              ),
+              bottom: const PreferredSize(
+                preferredSize: Size.fromHeight(48),
+                child: TabBar(
+                  tabs: [
+                    Tab(text: 'Upper Body'),
+                    Tab(text: 'Lower Body'),
+                  ],
+                ),
               ),
             ),
-          ),
-          bottom: const PreferredSize(
-            preferredSize: Size.fromHeight(48),
-            child: TabBar(
-              tabs: [
-                Tab(text: 'Upper Body'),
-                Tab(text: 'Lower Body'),
+            body: const TabBarView(
+              children: [
+                _WorkoutList(type: WorkoutType.upperBody),
+                _WorkoutList(type: WorkoutType.lowerBody),
               ],
             ),
+            floatingActionButton: FloatingActionButton(
+              onPressed: () => _showAddWorkoutDialog(context),
+              child: const Icon(Icons.add),
+            ),
           ),
-        ),
-        body: const TabBarView(
-          children: [
-            _WorkoutList(type: WorkoutType.upperBody),
-            _WorkoutList(type: WorkoutType.lowerBody),
-          ],
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () => _showAddWorkoutDialog(context),
-          child: const Icon(Icons.add),
-        ),
-      ),
+        );
+      },
     );
   }
 
