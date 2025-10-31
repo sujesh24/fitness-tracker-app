@@ -18,7 +18,7 @@ class _WorkListScreenState extends State<WorkListScreen> {
     return Consumer(
       builder: (_, WidgetRef ref, __) {
         //todo
-        final workouts = ref.watch(workoutNotifierProvider);
+        // final workouts = ref.watch(workoutNotifierProvider);
         return DefaultTabController(
           length: 2,
           child: Scaffold(
@@ -71,38 +71,68 @@ class _WorkListScreenState extends State<WorkListScreen> {
 }
 
 //workout list widget
-class _WorkoutList extends StatelessWidget {
+class _WorkoutList extends ConsumerWidget {
   final WorkoutType type;
 
   const _WorkoutList({required this.type});
 
   @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      padding: const EdgeInsets.all(16),
-      itemCount: 2,
-      itemBuilder: (context, index) {
-        return Card(
-          child: ListTile(
-            enabled: false,
-            title: const Text(
-              "workout 1",
-              style: TextStyle(color: Colors.grey),
-            ),
-            subtitle: const Text(
-              '1 sets',
-              style: TextStyle(color: Colors.grey),
-            ),
-            trailing: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Checkbox(value: false, onChanged: (_) {}),
-                IconButton(icon: const Icon(Icons.delete), onPressed: () {}),
-              ],
+  Widget build(BuildContext context, WidgetRef ref) {
+    final workouts = ref.watch(workoutNotifierProvider);
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Text(
+            'Total Workouts: ${workouts.length}',
+            style: const TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
             ),
           ),
-        );
-      },
+        ),
+        Expanded(
+          child: ListView.builder(
+            padding: const EdgeInsets.all(16),
+            itemCount: workouts.length,
+            itemBuilder: (context, index) {
+              final workout = workouts[index];
+              return Card(
+                child: ListTile(
+                  enabled: false,
+                  title: Text(
+                    workout.name,
+                    style: const TextStyle(color: Colors.grey),
+                  ),
+                  subtitle: Text(
+                    '${workout.sets} sets',
+                    style: const TextStyle(color: Colors.grey),
+                  ),
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Checkbox(
+                          value: workout.isCompleted,
+                          onChanged: (_) {
+                            ref
+                                .read(workoutNotifierProvider.notifier)
+                                .toggleWorkoutStatus(workout.id);
+                          }),
+                      IconButton(
+                          icon: const Icon(Icons.delete),
+                          onPressed: () {
+                            ref
+                                .read(workoutNotifierProvider.notifier)
+                                .deleteWorkout(workout.id);
+                          }),
+                    ],
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+      ],
     );
   }
 }

@@ -37,7 +37,6 @@ class _WorkoutFormDialogState extends State<WorkoutFormDialog> {
 
   //submit form
   void submitForm() {
-    //todo
     Navigator.of(context).pop();
   }
 
