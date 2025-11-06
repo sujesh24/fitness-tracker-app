@@ -78,7 +78,19 @@ class _WorkoutList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final workouts = ref.watch(workoutNotifierProvider);
+    final unfilteredWorkouts = ref.watch(workoutNotifierProvider);
+    final workouts =
+        unfilteredWorkouts.where((workout) => workout.type == type).toList();
+
+//display no workout message
+    if (workouts.isEmpty) {
+      return const Center(
+        child: Text(
+          'No workouts added yet.',
+          style: TextStyle(fontSize: 16, color: Colors.grey),
+        ),
+      );
+    }
     return Column(
       children: [
         Padding(
