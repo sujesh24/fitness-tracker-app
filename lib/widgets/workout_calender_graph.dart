@@ -36,7 +36,7 @@ class WorkoutCalenderGraph extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 4),
+          const SizedBox(height: 4),
           Expanded(
             child: Row(
               children: List.generate(31, (index) {

@@ -22,14 +22,15 @@ class WorkoutNotifier extends _$WorkoutNotifier {
   void addWorkout(
       String name, double weight, int reps, int sets, WorkoutType type) {
     final workout = Workout(
-      id: _uuid.v4(),
-      name: name,
-      weight: weight,
-      reps: reps,
-      sets: sets,
-      isCompleted: false,
-      type: type,
-    );
+        id: _uuid.v4(),
+        name: name,
+        weight: weight,
+        reps: reps,
+        sets: sets,
+        isCompleted: false,
+        type: type,
+        createdAt: DateTime.now(),
+        completedAt: null);
     state = [...state, workout];
   }
 

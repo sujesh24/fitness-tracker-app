@@ -13,6 +13,7 @@ class Workout with _$Workout {
     required int sets,
     required bool isCompleted,
     required WorkoutType type,
+    required DateTime createdAt,
     DateTime? completedAt,
   }) = _Workout;
 

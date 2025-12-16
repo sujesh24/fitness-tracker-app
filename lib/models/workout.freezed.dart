@@ -27,6 +27,7 @@ mixin _$Workout {
   int get sets => throw _privateConstructorUsedError;
   bool get isCompleted => throw _privateConstructorUsedError;
   WorkoutType get type => throw _privateConstructorUsedError;
+  DateTime get createdAt => throw _privateConstructorUsedError;
   DateTime? get completedAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -47,6 +48,7 @@ abstract class $WorkoutCopyWith<$Res> {
       int sets,
       bool isCompleted,
       WorkoutType type,
+      DateTime createdAt,
       DateTime? completedAt});
 }
 
@@ -70,6 +72,7 @@ class _$WorkoutCopyWithImpl<$Res, $Val extends Workout>
     Object? sets = null,
     Object? isCompleted = null,
     Object? type = null,
+    Object? createdAt = null,
     Object? completedAt = freezed,
   }) {
     return _then(_value.copyWith(
@@ -101,6 +104,10 @@ class _$WorkoutCopyWithImpl<$Res, $Val extends Workout>
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as WorkoutType,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       completedAt: freezed == completedAt
           ? _value.completedAt
           : completedAt // ignore: cast_nullable_to_non_nullable
@@ -124,6 +131,7 @@ abstract class _$$WorkoutImplCopyWith<$Res> implements $WorkoutCopyWith<$Res> {
       int sets,
       bool isCompleted,
       WorkoutType type,
+      DateTime createdAt,
       DateTime? completedAt});
 }
 
@@ -145,6 +153,7 @@ class __$$WorkoutImplCopyWithImpl<$Res>
     Object? sets = null,
     Object? isCompleted = null,
     Object? type = null,
+    Object? createdAt = null,
     Object? completedAt = freezed,
   }) {
     return _then(_$WorkoutImpl(
@@ -176,6 +185,10 @@ class __$$WorkoutImplCopyWithImpl<$Res>
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as WorkoutType,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       completedAt: freezed == completedAt
           ? _value.completedAt
           : completedAt // ignore: cast_nullable_to_non_nullable
@@ -195,6 +208,7 @@ class _$WorkoutImpl implements _Workout {
       required this.sets,
       required this.isCompleted,
       required this.type,
+      required this.createdAt,
       this.completedAt});
 
   factory _$WorkoutImpl.fromJson(Map<String, dynamic> json) =>
@@ -215,11 +229,13 @@ class _$WorkoutImpl implements _Workout {
   @override
   final WorkoutType type;
   @override
+  final DateTime createdAt;
+  @override
   final DateTime? completedAt;
 
   @override
   String toString() {
-    return 'Workout(id: $id, name: $name, weight: $weight, reps: $reps, sets: $sets, isCompleted: $isCompleted, type: $type, completedAt: $completedAt)';
+    return 'Workout(id: $id, name: $name, weight: $weight, reps: $reps, sets: $sets, isCompleted: $isCompleted, type: $type, createdAt: $createdAt, completedAt: $completedAt)';
   }
 
   @override
@@ -235,6 +251,8 @@ class _$WorkoutImpl implements _Workout {
             (identical(other.isCompleted, isCompleted) ||
                 other.isCompleted == isCompleted) &&
             (identical(other.type, type) || other.type == type) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
             (identical(other.completedAt, completedAt) ||
                 other.completedAt == completedAt));
   }
@@ -242,7 +260,7 @@ class _$WorkoutImpl implements _Workout {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, weight, reps, sets,
-      isCompleted, type, completedAt);
+      isCompleted, type, createdAt, completedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -267,6 +285,7 @@ abstract class _Workout implements Workout {
       required final int sets,
       required final bool isCompleted,
       required final WorkoutType type,
+      required final DateTime createdAt,
       final DateTime? completedAt}) = _$WorkoutImpl;
 
   factory _Workout.fromJson(Map<String, dynamic> json) = _$WorkoutImpl.fromJson;
@@ -285,6 +304,8 @@ abstract class _Workout implements Workout {
   bool get isCompleted;
   @override
   WorkoutType get type;
+  @override
+  DateTime get createdAt;
   @override
   DateTime? get completedAt;
   @override
