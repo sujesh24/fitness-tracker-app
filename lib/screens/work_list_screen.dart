@@ -18,7 +18,7 @@ class _WorkListScreenState extends State<WorkListScreen> {
     return Consumer(
       builder: (_, WidgetRef ref, __) {
         //todo
-        // final workouts = ref.watch(workoutNotifierProvider);
+        //final workouts = ref.watch(workoutNotifierProvider);
         return DefaultTabController(
           length: 2,
           child: Scaffold(
@@ -32,7 +32,6 @@ class _WorkListScreenState extends State<WorkListScreen> {
                     padding:
                         EdgeInsets.only(bottom: 56.0, left: 16.0, right: 16.0),
                     child: WorkoutCalenderGraph(),
-                    // child: Text('Workout Calendar Graph Placeholder'),
                   ),
                 ),
               ),
@@ -114,11 +113,21 @@ class _WorkoutList extends ConsumerWidget {
                   enabled: false,
                   title: Text(
                     workout.name,
-                    style: const TextStyle(color: Colors.grey),
+                    style: TextStyle(
+                        decoration: workout.isCompleted
+                            ? TextDecoration.lineThrough
+                            : TextDecoration.none,
+                        color:
+                            workout.isCompleted ? Colors.grey : Colors.white),
                   ),
                   subtitle: Text(
                     '${workout.sets} sets',
-                    style: const TextStyle(color: Colors.grey),
+                    style: TextStyle(
+                      decoration: workout.isCompleted
+                          ? TextDecoration.lineThrough
+                          : TextDecoration.none,
+                      color: workout.isCompleted ? Colors.grey : Colors.white,
+                    ),
                   ),
                   trailing: Row(
                     mainAxisSize: MainAxisSize.min,

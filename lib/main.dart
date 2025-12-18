@@ -13,6 +13,7 @@ void main() async {
   final sharedPrefrence = await SharedPreferences.getInstance();
   final hasSeenOnboarding =
       sharedPrefrence.getBool(hasOnboardingInitialized) ?? false;
+
   runApp(ProviderScope(overrides: [
     hasSeenOnboardingProvider.overrideWith((ref) => hasSeenOnboarding),
   ], child: const MyApp()));
